@@ -21,6 +21,9 @@ Alongside my work, I am also personally quite interested in understanding how th
   name = "github"
   url = "https://github.com/jeremy63s"
 
+[params.footer]
+  hideCopyright = true
+
 [[menu.main]]
   name = "Software Tools"
   url = "/projects/#software-tools"
