@@ -1,0 +1,157 @@
+{{- define "main" }}
+
+{{- $github := "" }}
+{{- range site.Params.socialIcons }}{{ if eq .name "github" }}{{ $github = .url }}{{ end }}{{ end }}
+
+<style>
+  .first-entry.home-info { min-height: unset; margin: .25rem 0 1.25rem; }
+  .home-info .entry-header h1 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, ui-serif, serif;
+    font-weight: 500;
+    font-size: 2.75rem;
+    color: #5b9df9;
+    letter-spacing: .01em;
+  }
+
+  .site-topbar { display: flex; flex-direction: column; align-items: flex-end; gap: .4rem; margin-bottom: 1.1rem; }
+  .topbar-github .social-icons { padding: 0; margin: 0 -10px 0 0; }
+  .topbar-contact { text-align: right; }
+  .topbar-contact-label { font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--secondary); margin: 0 0 .3rem; }
+  .topbar-contact-line { color: var(--content); font-size: .88rem; line-height: 1.45; }
+
+  .publications, .software-tools, .ongoing-projects { margin-top: 1.1rem; }
+  .software-tools, .ongoing-projects { margin-top: 2rem; padding-top: 1.1rem; border-top: 1px solid var(--border); }
+  .publications h1 { font-size: 1.4rem; font-weight: 500; color: var(--secondary); margin: 0 0 .85rem; }
+  .software-tools h1, .ongoing-projects h1 { font-size: 1.4rem; font-weight: 500; margin: 0 0 .85rem; }
+  .software-tools h1 a, .ongoing-projects h1 a { color: var(--secondary); text-decoration: none; }
+  .software-tools h1 a:hover, .ongoing-projects h1 a:hover { color: #5b9df9; text-decoration: none; }
+  .pub-entry { margin-bottom: 1.1rem; }
+  .pub-entry:last-child { margin-bottom: 0; }
+  .pub-badges { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: .35rem; margin-bottom: .4rem; }
+  .pub-badges-left, .pub-badges-right { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .pub-pill { display: inline-block; padding: .12rem .5rem; border-radius: 999px; background: var(--tertiary); color: var(--content); font-size: .7rem; text-decoration: none; white-space: nowrap; }
+  a.pub-pill:hover { text-decoration: none; opacity: .82; }
+  .pub-title { font-size: 1.02rem; font-weight: 600; margin: 0 0 .2rem; line-height: 1.3; }
+  .pub-title a { color: #5b9df9; text-decoration: none; }
+  .pub-title a:hover { text-decoration: none; opacity: .82; }
+  .pub-authors { color: var(--content); margin: 0 0 .3rem; line-height: 1.4; font-size: .86rem; }
+  .pub-abstract summary { list-style: none; cursor: pointer; }
+  .pub-abstract summary::-webkit-details-marker { display: none; }
+  .pub-abstract-preview { color: var(--secondary); line-height: 1.5; margin: 0; font-size: .86rem; max-height: 1.5em; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%); mask-image: linear-gradient(to bottom, black 40%, transparent 100%); }
+  .pub-abstract[open] .pub-abstract-preview { display: none; }
+  .pub-abstract-toggle { display: block; text-align: right; color: #5b9df9; margin-top: .15rem; font-size: .8rem; }
+  .pub-abstract-full { color: var(--secondary); line-height: 1.6; margin: .15rem 0 0; font-size: .88rem; }
+
+  .sw-entry { margin-bottom: 1.1rem; }
+  .sw-entry:last-child { margin-bottom: 0; }
+  .sw-badges { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: .35rem; margin-bottom: .4rem; }
+  .sw-badges-left, .sw-badges-right { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .sw-title { font-size: 1.02rem; font-weight: 600; margin: 0 0 .2rem; line-height: 1.3; }
+  .sw-title a { color: #5b9df9; text-decoration: none; }
+  .sw-title a:hover { text-decoration: none; opacity: .82; }
+  .sw-desc { color: var(--secondary); margin: 0; line-height: 1.45; font-size: .86rem; }
+</style>
+
+<div class="site-topbar">
+  {{- if $github }}
+  <div class="topbar-github">
+    {{ partial "social_icons.html" (dict "align" "") }}
+  </div>
+  {{- end }}
+  <div class="topbar-contact">
+    <p class="topbar-contact-label">Contact Information</p>
+    <div class="topbar-contact-line">jeremysiegelman@gmail.com</div>
+    <div class="topbar-contact-line">HDB 3.208, 1601 Trinity St</div>
+    <div class="topbar-contact-line">Austin, TX 78712 USA</div>
+  </div>
+</div>
+
+{{- partial "home_info.html" . }}
+
+<section class="publications">
+  <h1>Publications &amp; Abstracts</h1>
+
+  {{- range site.Data.publications }}
+  <div class="pub-entry">
+    <div class="pub-badges">
+      <div class="pub-badges-left">
+        <a class="pub-pill" href="{{ .scholar_url }}" target="_blank" rel="noopener">Scholar</a>
+        {{- if .has_publisher_link }}
+        <a class="pub-pill" href="{{ .url }}" target="_blank" rel="noopener">Publisher</a>
+        {{- end }}
+      </div>
+      <div class="pub-badges-right">
+        <span class="pub-pill">{{ (time.AsTime .date).Format "Jan 2, 2006" }}</span>
+        <span class="pub-pill">{{ .venue }}</span>
+      </div>
+    </div>
+    <h2 class="pub-title"><a href="{{ if .has_publisher_link }}{{ .url }}{{ else }}{{ .scholar_url }}{{ end }}" target="_blank" rel="noopener">{{ .title }}</a></h2>
+    <p class="pub-authors">{{ replace .authors "Jeremy Siegelman" "<strong>Jeremy Siegelman</strong>" | safeHTML }}</p>
+    <details class="pub-abstract">
+      <summary>
+        <p class="pub-abstract-preview">{{ .abstract }}</p>
+        <span class="pub-abstract-toggle">+ Abstract</span>
+      </summary>
+      <p class="pub-abstract-full">{{ .abstract }}</p>
+    </details>
+  </div>
+  {{- end }}
+</section>
+
+<section class="software-tools">
+  <h1><a href="/projects/#software-tools">Software Tools</a></h1>
+
+  {{- $swPages := (site.GetPage "/projects").Pages }}
+  {{- range $swPages }}
+  <div class="sw-entry">
+    <div class="sw-badges">
+      <div class="sw-badges-left">
+        <a class="pub-pill" href="{{ .RelPermalink }}">View</a>
+        {{- with .Params.links }}
+        {{- range . }}
+        <a class="pub-pill" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>
+        {{- end }}
+        {{- end }}
+      </div>
+      <div class="sw-badges-right">
+        <span class="pub-pill">{{ .Date.Format "Jan 2, 2006" }}</span>
+        {{- with (index .Params.tags 0) }}
+        <span class="pub-pill">{{ . }}</span>
+        {{- end }}
+      </div>
+    </div>
+    <h2 class="sw-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <p class="sw-desc">{{ .Description }}</p>
+  </div>
+  {{- end }}
+</section>
+
+<section class="ongoing-projects">
+  <h1><a href="/projects/#ongoing-projects">Ongoing Projects</a></h1>
+
+  {{- $ongoingPages := (site.GetPage "/ongoing-projects").Pages }}
+  {{- range $ongoingPages }}
+  <div class="sw-entry">
+    <div class="sw-badges">
+      <div class="sw-badges-left">
+        <a class="pub-pill" href="{{ .RelPermalink }}">View</a>
+        {{- with .Params.links }}
+        {{- range . }}
+        <a class="pub-pill" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>
+        {{- end }}
+        {{- end }}
+      </div>
+      <div class="sw-badges-right">
+        <span class="pub-pill">{{ .Date.Format "Jan 2, 2006" }}</span>
+        {{- with (index .Params.tags 0) }}
+        <span class="pub-pill">{{ . }}</span>
+        {{- end }}
+      </div>
+    </div>
+    <h2 class="sw-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <p class="sw-desc">{{ .Description }}</p>
+  </div>
+  {{- end }}
+</section>
+
+{{- end }}

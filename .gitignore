@@ -1,0 +1,14 @@
+# Hugo build output
+public/
+resources/
+.hugo_build.lock
+
+# Local Hugo binary (install separately, see README)
+.bin/
+
+# macOS
+.DS_Store
+
+# Unrelated project files kept out of this repo
+spatial_filter_for_covalent_pulldown.zip
+spatial_filter_for_covalent_pulldown/

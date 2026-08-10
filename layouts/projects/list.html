@@ -1,0 +1,103 @@
+{{- define "main" }}
+
+{{- if not .IsHome | and .Title }}
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <div class="post-description">{{ .Description | markdownify }}</div>
+  {{- end }}
+</header>
+{{- end }}
+
+<style>
+  .projects-list { display:flex; flex-direction:column; gap:4rem; }
+  .projects-list .project-entry { display:flex; flex-wrap:wrap; gap:2.5rem; align-items:flex-start; }
+  .projects-list .project-thumb { flex:0 0 340px; max-width:340px; min-width:240px; }
+  .projects-list .project-thumb a { display:block; border-radius:8px; overflow:hidden; aspect-ratio:16/10; background:var(--tertiary); }
+  .projects-list .project-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .projects-list .project-thumb .placeholder {
+    width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+    font-family: ui-monospace, "IBM Plex Mono", monospace; font-size:.8rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--secondary); text-align:center; padding: 0 1rem;
+    background: repeating-linear-gradient(135deg, var(--tertiary) 0 10px, var(--entry) 10px 20px);
+  }
+  .projects-list .project-body { flex:1 1 320px; min-width:280px; }
+  .projects-list .project-body h2 { margin:0 0 .7rem; font-size:1.2rem; line-height:1.3; }
+  .projects-list .project-body h2 a { color:#5b9df9; text-decoration:none; }
+  .projects-list .project-body h2 a:hover { text-decoration:underline; }
+  .projects-list .project-summary p { margin:0 0 .85rem; color:var(--content); line-height:1.6; font-size:.9rem; }
+  .projects-list .project-summary p:last-child { margin-bottom:0; }
+  .projects-list .project-summary a { color:#5b9df9; }
+  .projects-list .continue-reading { display:inline-block; margin-top:.3rem; color:#5b9df9; text-decoration:none; font-weight:500; font-size:.88rem; }
+  .projects-list .continue-reading:hover { text-decoration:underline; }
+  @media (max-width: 560px) {
+    .projects-list .project-thumb { flex-basis:100%; max-width:100%; }
+  }
+
+  .page-header h1 { font-size: 2rem; }
+  .projects-section { scroll-margin-top: 90px; }
+  .projects-section + .projects-section { margin-top: 4.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+  .projects-section h1 { font-size: 1.25rem; font-weight: 500; margin: 0 0 1.5rem; }
+</style>
+
+{{- if eq .RelPermalink "/projects/" }}
+
+<section id="software-tools" class="projects-section">
+  <h1>Software Tools</h1>
+  <div class="projects-list">
+    {{- range (site.GetPage "/projects").Pages }}
+    {{ partial "project_card.html" . }}
+    {{- end }}
+  </div>
+</section>
+
+<section id="ongoing-projects" class="projects-section">
+  <h1>Ongoing Projects</h1>
+  <div class="projects-list">
+    {{- range (site.GetPage "/ongoing-projects").Pages }}
+    {{ partial "project_card.html" . }}
+    {{- end }}
+  </div>
+</section>
+
+<script>
+(function () {
+  var sections = [].slice.call(document.querySelectorAll('#software-tools, #ongoing-projects'));
+  if (!sections.length) return;
+  var navLinks = [].slice.call(document.querySelectorAll('#menu a')).filter(function (a) {
+    var href = a.getAttribute('href') || '';
+    return href.indexOf('#software-tools') !== -1 || href.indexOf('#ongoing-projects') !== -1;
+  });
+  function setActive(id) {
+    navLinks.forEach(function (a) {
+      var span = a.querySelector('span');
+      if (!span) return;
+      if ((a.getAttribute('href') || '').indexOf('#' + id) !== -1) {
+        span.classList.add('active');
+      } else {
+        span.classList.remove('active');
+      }
+    });
+  }
+  setActive(sections[0].id);
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+  sections.forEach(function (s) { observer.observe(s); });
+})();
+</script>
+
+{{- else }}
+
+<div class="projects-list">
+  {{- range .Pages }}
+  {{ partial "project_card.html" . }}
+  {{- end }}
+</div>
+
+{{- end }}
+
+{{- end }}

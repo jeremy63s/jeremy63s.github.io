@@ -1,0 +1,37 @@
+baseURL = "https://jeremy63s.github.io/"
+languageCode = "en-us"
+title = "Jeremy"
+theme = "PaperMod"
+relativeURLs = true
+
+[params.homeInfoParams]
+  Title = "Jeremy Siegelman"
+  Content = """
+I am currently a research associate at the [Clayton foundation for Research](https://www.claytonbiotech.com/about-us/), I am appointed through the UT Austin Department of Neurosurgery under the supervision of [Dr. Benjamin Umlauf](https://sites.utexas.edu/umlauf-lab/research/). I work on engineering molecular systems that improve treatment for some of the most malignant types of cancer. Broadly speaking, my projects pertain to:
+
+- Generating peptides with specific physiochemical properties; and
+- Developing systems that utilize those properties to enhance the effectiveness of chemotherapeutics while reducing their harmful side effects (aka increase their therapeutic index)
+
+I use a combination of computational and wetlab techniques to generate peptide sequences with specific functionalities, including [phage display](https://en.wikipedia.org/wiki/Phage_display), [milestoning](https://ui.adsabs.harvard.edu/abs/2013JChPh.138o4105H/abstract), and pipelines involving ESM-family models, autodock-vina, CHAARM-GUI, and GOLD. For the second part, I use a lipid-nanoparticle (LNP) based drug delivery system derived from the work of [Kathlynn Brown](https://pmc.ncbi.nlm.nih.gov/articles/PMC3561762/) where I can connect our chosen peptide for via [strain-mediated click chemistry](https://en.wikipedia.org/wiki/Click_chemistry#Strain-promoted_azide-alkyne_cycloaddition_%28SPAAC%29), yielding a fast and inexpensive way to tailor the function of our LNPs to our needs, it just depends on the peptide!
+
+Alongside my work, I am also personally quite interested in understanding how the geometry of neural population activity is connected to its computation. I enjoy using modern tools such as [MFTMA](https://arxiv.org/abs/2006.01095) to understand the representational geometry of neural learning systems under different conditions and am working on a few projects that I hope will shine light on the connections between some of these geometric properties and their functional outcomes.
+"""
+
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/jeremy63s"
+
+[[menu.main]]
+  name = "Software Tools"
+  url = "/projects/#software-tools"
+  weight = 10
+
+[[menu.main]]
+  name = "Ongoing Projects"
+  url = "/projects/#ongoing-projects"
+  weight = 20
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

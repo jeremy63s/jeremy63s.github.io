@@ -1,0 +1,18 @@
+{{- $img := "" }}
+{{- with .Params.cover }}{{ with .image }}{{ $img = . }}{{ end }}{{ end }}
+<article class="project-entry">
+  <div class="project-thumb">
+    <a href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+      {{- if $img }}
+      <img src="{{ printf "/%s" $img | relURL }}" alt="{{ .Params.cover.alt | default .Title }}" loading="lazy">
+      {{- else }}
+      <div class="placeholder">{{ .Title }}</div>
+      {{- end }}
+    </a>
+  </div>
+  <div class="project-body">
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <div class="project-summary">{{ .Summary }}</div>
+    <a class="continue-reading" href="{{ .RelPermalink }}">Continue reading &#8594;</a>
+  </div>
+</article>
