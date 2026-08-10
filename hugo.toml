@@ -10,7 +10,7 @@ relativeURLs = true
 I am currently a research associate at the [Clayton foundation for Research](https://www.claytonbiotech.com/about-us/), I am appointed through the UT Austin Department of Neurosurgery under the supervision of [Dr. Benjamin Umlauf](https://sites.utexas.edu/umlauf-lab/research/). I work on engineering molecular systems that improve treatment for some of the most malignant types of cancer. Broadly speaking, my projects pertain to:
 
 - Generating peptides with specific physiochemical properties; and
-- Developing systems that utilize those properties to enhance the effectiveness of chemotherapeutics while reducing their harmful side effects (aka increase their therapeutic index)
+- Developing systems that utilize those properties to enhance the effectiveness of chemotherapeutics while reducing their harmful side effects, otherwise known as increasing the therapeutic index.
 
 I use a combination of computational and wetlab techniques to generate peptide sequences with specific functionalities, including [phage display](https://en.wikipedia.org/wiki/Phage_display), [milestoning](https://ui.adsabs.harvard.edu/abs/2013JChPh.138o4105H/abstract), and pipelines involving ESM-family models, autodock-vina, CHAARM-GUI, and GOLD. For the second part, I use a lipid-nanoparticle (LNP) based drug delivery system derived from the work of [Kathlynn Brown](https://pmc.ncbi.nlm.nih.gov/articles/PMC3561762/) where I can connect our chosen peptide for via [strain-mediated click chemistry](https://en.wikipedia.org/wiki/Click_chemistry#Strain-promoted_azide-alkyne_cycloaddition_%28SPAAC%29), yielding a fast and inexpensive way to tailor the function of our LNPs to our needs, it just depends on the peptide!
 
