@@ -1,10 +1,11 @@
 ---
-title: "Peptide functionalized LNPs as an alternative to ADCs"
+title: "Peptide functionalized liposomes as an alternative to ADCs"
 date: 2026-08-03
+weight: 2
 draft: false
-description: "Antibody-drug conjugates have transformed cancer treatment, but the ones used against lung cancer carry a serious, often fatal side effect: interstitial lung disease. Peptide-functionalized LNPs offer an intriguing alternative; they are far less immunogenic, faster and cheaper to produce, and lack the structures thought to bring on ILD in these patients."
-summary: "Antibody-drug conjugates have transformed cancer treatment, but the ones used against lung cancer carry a serious, often fatal side effect: interstitial lung disease. Peptide-functionalized LNPs offer an intriguing alternative; they are far less immunogenic, faster and cheaper to produce, and lack the structures thought to bring on ILD in these patients."
-tags: ["drug-delivery", "lipid-nanoparticles", "peptide-engineering", "oncology", "antibody-drug-conjugates"]
+description: "Antibody-drug conjugates have transformed cancer treatment, but the ones used against lung cancer carry a serious, often fatal side effect: interstitial lung disease. Peptide-functionalized liposomes offer an intriguing alternative; they are far less immunogenic, faster and cheaper to produce, and lack the structures thought to bring on ILD in these patients."
+summary: "Antibody-drug conjugates have transformed cancer treatment, but the ones used against lung cancer carry a serious, often fatal side effect: interstitial lung disease. Peptide-functionalized liposomes offer an intriguing alternative; they are far less immunogenic, faster and cheaper to produce, and lack the structures thought to bring on ILD in these patients."
+tags: ["drug-delivery", "liposomes", "peptide-engineering", "oncology", "antibody-drug-conjugates"]
 hiddenInHomeList: true
 cover:
   image: "images/projects/peptide-lnp-adc-cover.jpg"
@@ -27,6 +28,7 @@ cover:
 
   .pl-fig { margin:2rem auto; max-width:520px; text-align:center; }
   .pl-fig img { width:100%; height:auto; display:block; border-radius:8px; background:#fff; padding:1rem; box-sizing:border-box; }
+  .pl-fig-title { margin:0 0 .6rem; font-size:1rem; font-weight:500; color:var(--primary); }
   .pl-fig figcaption { margin-top:.6rem; font-size:.85rem; color:var(--secondary); line-height:1.5; text-align:left; }
   .pl-fig-pair-breakout {
     position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw;
@@ -59,7 +61,7 @@ But Enhertu also illustrates the platform's most stubborn weakness. Beyond breas
   <figcaption>ADC binds to alveolar macrophage via the Fc&gamma;-receptor, the ADC is internalized and releases drug payload causing increased cytokine production leading to cytokine-mediated lung injury <a href="#pl-ref4" id="pl-cite4b">[4]</a>.</figcaption>
 </figure>
 
-One alternative is to swap the antibody for something structurally very different: a short peptide, attached not to the drug directly but to the surface of a lipid nanoparticle (LNP) — the same class of delivery vehicle used in mRNA vaccines — which carries the drug payload inside it instead. Peptides have generally been considered inferior to antibodies on the whole: they typically bind their target more weakly, and are degraded by circulating peptidases within minutes to hours after administration. However, peptides provoke little to no immune response, and they're often an order of magnitude cheaper to produce <a href="#pl-ref6" id="pl-cite6">[6]</a>.
+One alternative is to swap the antibody for something structurally very different: a short peptide, attached not to the drug directly but to the surface of a liposome, which carries the drug payload inside it instead. Peptides have generally been considered inferior to antibodies on the whole: they typically bind their target more weakly, and are degraded by circulating peptidases within minutes to hours after administration. However, peptides provoke little to no immune response, and they're often an order of magnitude cheaper to produce <a href="#pl-ref6" id="pl-cite6">[6]</a>.
 
 <div class="pl-compare">
   <div class="pl-compare-col">
@@ -81,32 +83,33 @@ One alternative is to swap the antibody for something structurally very differen
   </div>
 </div>
 
-Additionally, the weaknesses of a peptide compared to an antibody as a ligand can be largely engineered away. Building on work from Kathlynn Brown's lab <a href="#pl-ref7" id="pl-cite7">[7]</a>, I created an LNP decorated with a peptide generated to bind to mucin 4, achieving a binding affinity (K<sub>D</sub>) below 9 nanomolar. For context, kinetic measurements of trastuzumab, the antibody inside Enhertu, put its own K<sub>D</sub> around 1&ndash;5 nM <a href="#pl-ref8" id="pl-cite8">[8]</a>.
+Additionally, the weaknesses of a peptide compared to an antibody as a ligand can be largely engineered away. Building on work from Kathlynn Brown's lab <a href="#pl-ref7" id="pl-cite7">[7]</a>, I created a liposome decorated with a peptide generated to bind to mucin 4, achieving a binding affinity (K<sub>D</sub>) below 4 nanomolar. For context, kinetic measurements of trastuzumab, the antibody inside Enhertu, put its own K<sub>D</sub> around 1&ndash;5 nM <a href="#pl-ref8" id="pl-cite8">[8]</a>.
 
 <figure class="pl-fig">
-  <img src="/images/projects/peptide-lnp-adc-kd-curve.png" alt="M4-3 peptide binding curve showing relative fluorescence units versus LNP concentration in nanomolar, with a K_D below 9 nanomolar">
+  <div class="pl-fig-title">MUC4 binding peptide 3</div>
+  <img src="/images/projects/peptide-lnp-adc-kd-curve-muc4-3.jpg" alt="MUC4 binding peptide 3 binding curve showing relative fluorescence units versus liposomal concentration in nanomolar, with a K_D below 4 nanomolar">
 </figure>
 
 Given:
 
 <ul class="pl-list">
-  <li>the recent maturation of in-silico tools and pipelines like HADDOCK, ESMFold, and others, and</li>
+  <li>the recent maturation of computational tools like AlphaFold, ProteinMPNN, PyRosetta, and others; and</li>
   <li>that this peptide came from a simple linear random library,</li>
 </ul>
 
 there is reason to believe further optimization could yield a substantial <label for="pl-note-kd" class="pl-note-label">reduction in KD</label><input type="checkbox" id="pl-note-kd" class="pl-note-toggle"><span class="pl-note-text">Note: a reduction in KD is an increase in binding affinity.</span>.
 
-The LNP scaffold itself also brings a delivery advantage: LNPs can be aerosolized and delivered by nebulizer, whereas whole antibodies are notoriously difficult to nebulize. The physical stress of aerosolization tends to unfold and aggregate the protein, and those aggregates are themselves capable of triggering an inflammatory response <a href="#pl-ref9" id="pl-cite9">[9]</a>. Inhaled liposomal formulations, by contrast, are already established in pulmonary medicine <a href="#pl-ref10" id="pl-cite10">[10]</a>. That matters directly for the ILD problem described above: an LNP delivered by inhalation can be concentrated at the tissue it needs to reach without ever entering systemic circulation in appreciable amounts, retaining the same kind of localization advantage ADCs get from tumor targeting, without ever presenting the Fc region that lets alveolar macrophages indiscriminately take up circulating ADCs in the first place.
+The liposome scaffold itself also brings a delivery advantage: liposomes can be aerosolized and delivered by nebulizer, whereas whole antibodies are notoriously difficult to nebulize. The physical stress of aerosolization tends to unfold and aggregate the protein, and those aggregates are themselves capable of triggering an inflammatory response <a href="#pl-ref9" id="pl-cite9">[9]</a>. Inhaled liposomal formulations, by contrast, are already established in pulmonary medicine <a href="#pl-ref10" id="pl-cite10">[10]</a>. That matters directly for the ILD problem described above: a liposome delivered by inhalation can be concentrated at the tissue it needs to reach without ever entering systemic circulation in appreciable amounts, retaining the same kind of localization advantage ADCs get from tumor targeting, without ever presenting the Fc region that lets alveolar macrophages indiscriminately take up circulating ADCs in the first place.
 
 <div class="pl-fig-pair-breakout">
   <div class="pl-fig-pair">
-    <img src="/images/projects/peptide-lnp-adc-biodistribution.png" alt="Biodistribution of intranasally delivered M4-3-decorated LNPs across liver, spleen, kidney, heart, brain, and lungs over 3 days, showing preferential accumulation in the lungs">
-    <img src="/images/projects/peptide-lnp-adc-biodistribution-ip.png" alt="Biodistribution of intraperitoneally delivered M4-3-decorated LNPs across liver, spleen, kidney, heart, brain, and lung over 3 days, showing accumulation concentrated in the liver and lung">
+    <img src="/images/projects/peptide-lnp-adc-biodistribution.png" alt="Biodistribution of intranasally delivered M4-3-decorated liposomes across liver, spleen, kidney, heart, brain, and lungs over 3 days, showing preferential accumulation in the lungs">
+    <img src="/images/projects/peptide-lnp-adc-biodistribution-ip.png" alt="Biodistribution of intraperitoneally delivered M4-3-decorated liposomes across liver, spleen, kidney, heart, brain, and lung over 3 days, showing accumulation concentrated in the liver and lung">
   </div>
-  <p class="pl-fig-pair-caption">Comparison of LNP distribution between nasally vs intraperitoneally administered LNPs over time</p>
+  <p class="pl-fig-pair-caption">Comparison of liposome distribution between nasally vs intraperitoneally administered liposomes over time</p>
 </div>
 
-Protocols for loading highly potent "warhead therapeutics" into liposomes already exist, including a derivative of deruxtecan (the same payload used in Enhertu) <a href="#pl-ref11" id="pl-cite11">[11]</a>, though to my knowledge this has not yet been combined with a peptide-targeted LNP. Put together, a peptide-guided LNP platform offers a path to the same kind of targeted delivery that makes ADCs effective, yet:
+Protocols for loading highly potent "warhead therapeutics" into liposomes already exist, including a derivative of deruxtecan (the same payload used in Enhertu) <a href="#pl-ref11" id="pl-cite11">[11]</a>, though to my knowledge this has not yet been combined with a peptide-targeted liposome. Put together, a peptide-guided liposome platform offers a path to the same kind of targeted delivery that makes ADCs effective, yet:
 
 <ul class="pl-list">
   <li>Is a fraction of the cost to develop and manufacture</li>

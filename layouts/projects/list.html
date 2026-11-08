@@ -43,19 +43,19 @@
 
 {{- if eq .RelPermalink "/projects/" }}
 
-<section id="software-tools" class="projects-section">
-  <h1>Software Tools</h1>
+<section id="ongoing-projects" class="projects-section">
+  <h1>Past and Ongoing Projects</h1>
   <div class="projects-list">
-    {{- range (site.GetPage "/projects").Pages }}
+    {{- range (site.GetPage "/ongoing-projects").Pages }}
     {{ partial "project_card.html" . }}
     {{- end }}
   </div>
 </section>
 
-<section id="ongoing-projects" class="projects-section">
-  <h1>Ongoing Projects</h1>
+<section id="software-tools" class="projects-section">
+  <h1>Software Tools</h1>
   <div class="projects-list">
-    {{- range (site.GetPage "/ongoing-projects").Pages }}
+    {{- range (site.GetPage "/projects").Pages }}
     {{ partial "project_card.html" . }}
     {{- end }}
   </div>

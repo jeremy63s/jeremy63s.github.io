@@ -1,6 +1,7 @@
 ---
 title: "Generating a peptide to reduce glioblastoma infiltration"
 date: 2026-08-01
+weight: 1
 draft: false
 description: "A glypican-5-targeting peptide designed to dampen the neuronal hyperexcitability that drives glioblastoma growth and invasion."
 summary: "Glioblastomas are among the most deadly cancers due in large part to how they interact with healthy tissue at the tumor margin. They tend to be highly infiltrative, extending cancerous projections far into healthy tissue. This makes complete clean resection by a neurosurgeon essentially impossible in most cases. Here I present data exploring a mechanism that may contribute to this effect, as well as data on a peptide I generated against glypican 5 that dampens crucial drivers of this effect."

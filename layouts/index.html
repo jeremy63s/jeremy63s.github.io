@@ -98,11 +98,11 @@
   {{- end }}
 </section>
 
-<section class="software-tools">
-  <h1><a href="/projects/#software-tools">Software Tools</a></h1>
+<section class="ongoing-projects">
+  <h1><a href="/projects/#ongoing-projects">Past and Ongoing Projects</a></h1>
 
-  {{- $swPages := (site.GetPage "/projects").Pages }}
-  {{- range $swPages }}
+  {{- $ongoingPages := (site.GetPage "/ongoing-projects").Pages }}
+  {{- range $ongoingPages }}
   <div class="sw-entry">
     <div class="sw-badges">
       <div class="sw-badges-left">
@@ -114,7 +114,9 @@
         {{- end }}
       </div>
       <div class="sw-badges-right">
+        {{- if not .Params.hideMeta }}
         <span class="pub-pill">{{ .Date.Format "Jan 2, 2006" }}</span>
+        {{- end }}
         {{- with (index .Params.tags 0) }}
         <span class="pub-pill">{{ . }}</span>
         {{- end }}
@@ -126,11 +128,11 @@
   {{- end }}
 </section>
 
-<section class="ongoing-projects">
-  <h1><a href="/projects/#ongoing-projects">Ongoing Projects</a></h1>
+<section class="software-tools">
+  <h1><a href="/projects/#software-tools">Software Tools</a></h1>
 
-  {{- $ongoingPages := (site.GetPage "/ongoing-projects").Pages }}
-  {{- range $ongoingPages }}
+  {{- $swPages := (site.GetPage "/projects").Pages }}
+  {{- range $swPages }}
   <div class="sw-entry">
     <div class="sw-badges">
       <div class="sw-badges-left">
